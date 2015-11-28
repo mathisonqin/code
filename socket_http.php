@@ -11,7 +11,7 @@ $path = $urlInfo['path'];
 $query = empty($urlInfo['query']) ? '' : $urlInfo['query'];
 
 /* Get the port for the WWW service. */
-$service_port = getservbyname('www', 'tcp');
+$port = getservbyname('www', 'tcp');
 
 /* Get the IP address for the target host. */
 $address = gethostbyname($urlInfo['host']);
@@ -24,8 +24,8 @@ if ($socket === false) {
     echo "OK.\n";
 }
 
-echo "Attempting to connect to '$address' on port '$service_port'...";
-$result = socket_connect($socket, $address, $service_port);
+echo "Attempting to connect to '$address' on port '$port'...";
+$result = socket_connect($socket, $address, $port);
 if ($result === false) {
     echo "socket_connect() failed.\nReason: ($result) " . socket_strerror(socket_last_error($socket)) . "\n";
 } else {
